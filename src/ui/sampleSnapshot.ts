@@ -20,7 +20,6 @@ export const sampleSnapshot: SimulationSnapshot = {
       nextStop: 6,
       stops: [6, 8, 10],
       occupancy: 1,
-      occupancyMax: 8,
       utilization: 68,
     },
     {
@@ -32,7 +31,6 @@ export const sampleSnapshot: SimulationSnapshot = {
       nextStop: 9,
       stops: [9, 2],
       occupancy: 2,
-      occupancyMax: 8,
       utilization: 54,
     },
     {
@@ -44,7 +42,6 @@ export const sampleSnapshot: SimulationSnapshot = {
       nextStop: 3,
       stops: [3, 1],
       occupancy: 1,
-      occupancyMax: 8,
       utilization: 72,
     },
   ],

@@ -41,9 +41,7 @@ export function ElevatorCar({ elevator }: Props) {
             </span>
           </>
         ) : (
-          <span>
-            {elevator.occupancy} / {elevator.occupancyMax}
-          </span>
+          <span>{elevator.occupancy}</span>
         )}
       </div>
     </div>

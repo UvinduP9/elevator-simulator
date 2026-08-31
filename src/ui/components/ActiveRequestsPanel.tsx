@@ -4,9 +4,10 @@ import { ElevatorLetter } from "./ElevatorLetter";
 
 type Props = {
   requests: ActiveRequest[];
+  onSelect: (id: string) => void;
 };
 
-export function ActiveRequestsPanel({ requests }: Props) {
+export function ActiveRequestsPanel({ requests, onSelect }: Props) {
   return (
     <section className="panel" data-testid="active-requests-panel">
       <div className="panel-head">Active Requests</div>
@@ -21,7 +22,11 @@ export function ActiveRequestsPanel({ requests }: Props) {
         </thead>
         <tbody>
           {requests.map((req) => (
-            <tr key={req.id} className={req.highlighted ? "row-highlight" : undefined}>
+            <tr
+              key={req.id}
+              className={req.highlighted ? "row-highlight request-row" : "request-row"}
+              onClick={() => onSelect(req.id)}
+            >
               <td>F{req.floor}</td>
               <td>
                 <DirectionLabel direction={req.direction} />

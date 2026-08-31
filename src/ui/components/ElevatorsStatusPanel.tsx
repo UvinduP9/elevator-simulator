@@ -53,9 +53,7 @@ export function ElevatorsStatusPanel({ elevators }: Props) {
               <td>{Number.isInteger(car.floor) ? car.floor : car.floor.toFixed(1)}</td>
               <td>{car.nextStop ?? "—"}</td>
               <td>{car.stops.join(" · ")}</td>
-              <td className={`color-${car.id}`}>
-                {car.occupancy} / {car.occupancyMax}
-              </td>
+              <td className={`color-${car.id}`}>{car.occupancy}</td>
               <td>
                 <div className="util-mini">
                   <div className="util-track">

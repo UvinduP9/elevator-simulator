@@ -20,7 +20,6 @@ export type ElevatorView = {
   nextStop: number | null;
   stops: number[];
   occupancy: number;
-  occupancyMax: 8;
   utilization: number;
 };
 
@@ -69,7 +68,17 @@ export type SimulationSnapshot = {
   hallCalls: HallCall[];
   elevators: ElevatorView[];
   requests: ActiveRequest[];
-  evaluation: DispatchEvaluation;
+  evaluation: DispatchEvaluation | null;
   metrics: Metrics;
   events: LogEntry[];
+};
+
+export type SimulationActions = {
+  onHallClick: (floor: number, direction: Direction) => void;
+  onPauseToggle: () => void;
+  onReset: () => void;
+  onAddRequest: () => void;
+  onTrafficChange: (traffic: TrafficPreset) => void;
+  onSpeedChange: (speed: Speed) => void;
+  onRequestSelect: (id: string) => void;
 };

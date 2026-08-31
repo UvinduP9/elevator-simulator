@@ -1,6 +1,11 @@
-import type { SimulationSnapshot } from "../types";
+import type { SimulationSnapshot, Speed } from "../types";
 
-export function AppHeader({ snapshot }: { snapshot: SimulationSnapshot }) {
+type Props = {
+  snapshot: SimulationSnapshot;
+  onSpeedChange: (speed: Speed) => void;
+};
+
+export function AppHeader({ snapshot, onSpeedChange }: Props) {
   return (
     <header className="app-header" data-testid="app-header">
       <div className="header-brand">
@@ -20,17 +25,23 @@ export function AppHeader({ snapshot }: { snapshot: SimulationSnapshot }) {
         </select>
       </label>
       <div className="header-status">
-        <span className="running-dot" data-testid="app-header-status">
+        <span
+          className={snapshot.status === "Running" ? "running-dot" : "paused-dot"}
+          data-testid="app-header-status"
+        >
           {snapshot.status}
         </span>
-        <select data-testid="app-header-speed-select" defaultValue={`${snapshot.speed}x`}>
-          <option>0.5x</option>
-          <option>1x</option>
-          <option>2x</option>
-          <option>5x</option>
+        <select
+          data-testid="app-header-speed-select"
+          value={snapshot.speed}
+          onChange={(event) => onSpeedChange(Number(event.target.value) as Speed)}
+        >
+          <option value={0.5}>0.5x</option>
+          <option value={1}>1x</option>
+          <option value={2}>2x</option>
+          <option value={5}>5x</option>
         </select>
       </div>
     </header>
   );
 }
-

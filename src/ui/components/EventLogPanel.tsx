@@ -1,4 +1,5 @@
-import type { LogEntry } from "../types";
+import { useState } from "react";
+import type { EventType, LogEntry } from "../types";
 
 type Props = {
   events: LogEntry[];
@@ -17,13 +18,19 @@ function pillClass(entry: LogEntry) {
 }
 
 export function EventLogPanel({ events }: Props) {
+  const [filter, setFilter] = useState<EventType | "All Events">("All Events");
+  const visibleEvents = events.filter((event) => filter === "All Events" || event.type === filter);
   return (
     <section className="panel event-log" data-testid="event-log-panel">
       <div className="panel-head">
         Event Log
         <label>
           Filter:
-          <select data-testid="event-log-filter" defaultValue="All Events">
+          <select
+            data-testid="event-log-filter"
+            value={filter}
+            onChange={(event) => setFilter(event.target.value as EventType | "All Events")}
+          >
             <option>All Events</option>
             <option>REQUEST</option>
             <option>DISPATCH</option>
@@ -33,7 +40,7 @@ export function EventLogPanel({ events }: Props) {
         </label>
       </div>
       <div className="log-list">
-        {events.map((entry, index) => (
+        {visibleEvents.map((entry, index) => (
           <div className="log-row" key={`${entry.time}-${index}`}>
             <span className="log-time">{entry.time}</span>
             <span className={pillClass(entry)}>{pillLabel(entry)}</span>

@@ -83,12 +83,21 @@
   font-weight: 600;
 }
 
-.running-dot::before {
+.running-dot::before,
+.paused-dot::before {
   content: "";
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: currentColor;
+}
+
+.paused-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-weight: 600;
 }
 
 .app-main {

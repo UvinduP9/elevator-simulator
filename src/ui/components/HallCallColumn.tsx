@@ -5,13 +5,14 @@ import { ElevatorLetter } from "./ElevatorLetter";
 type Props = {
   floor: number;
   hallCalls: HallCall[];
+  onHallClick: (floor: number, direction: Direction) => void;
 };
 
 function callFor(calls: HallCall[], floor: number, direction: Direction) {
   return calls.find((c) => c.floor === floor && c.direction === direction);
 }
 
-export function HallCallColumn({ floor, hallCalls }: Props) {
+export function HallCallColumn({ floor, hallCalls, onHallClick }: Props) {
   const up = floor < 10 ? callFor(hallCalls, floor, "up") : undefined;
   const down = floor > 1 ? callFor(hallCalls, floor, "down") : undefined;
 
@@ -23,6 +24,7 @@ export function HallCallColumn({ floor, hallCalls }: Props) {
           className={`hall-btn${up?.assigned ? ` active-${up.assigned}` : ""}`}
           data-testid={`hall-call-${floor}-up`}
           aria-label={`Hall up floor ${floor}`}
+          onClick={() => onHallClick(floor, "up")}
         >
           {ARROW_UP}
         </button>
@@ -34,6 +36,7 @@ export function HallCallColumn({ floor, hallCalls }: Props) {
           className={`hall-btn${down?.assigned ? ` active-${down.assigned}` : ""}`}
           data-testid={`hall-call-${floor}-down`}
           aria-label={`Hall down floor ${floor}`}
+          onClick={() => onHallClick(floor, "down")}
         >
           {ARROW_DOWN}
         </button>
