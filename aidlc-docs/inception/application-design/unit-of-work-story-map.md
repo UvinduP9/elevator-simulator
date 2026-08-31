@@ -32,25 +32,25 @@ Every story is assigned to exactly one unit.
 - [x] US-S1
 
 ### U2 dispatch-engine
-- [ ] US-D1
-- [ ] US-D2
-- [ ] US-D3
-- [ ] US-D4
-- [ ] US-D5
-- [ ] US-D6
+- [x] US-D1
+- [x] US-D2
+- [x] US-D3
+- [x] US-D4
+- [x] US-D5
+- [x] US-D6
 
 ### U3 simulation-runtime
-- [ ] US-L2
-- [ ] US-L4
-- [ ] US-L5
-- [ ] US-L6
-- [ ] US-L7
+- [x] US-L2
+- [x] US-L4
+- [x] US-L5
+- [x] US-L6
+- [x] US-L7
 
 ### U4 live-dashboard
-- [ ] US-L1
-- [ ] US-L3
-- [ ] US-O1
-- [ ] US-O2
-- [ ] US-O3
-- [ ] US-O4
-- [ ] US-O5
+- [x] US-L1
+- [x] US-L3
+- [x] US-O1
+- [x] US-O2
+- [x] US-O3
+- [x] US-O4
+- [x] US-O5

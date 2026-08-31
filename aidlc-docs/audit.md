@@ -376,3 +376,91 @@ I’d personally also make the current SVG around 20–25% smaller than what you
 **Context**: Git commit and push
 
 ---
+
+## U2 start — Functional Design plan
+**Timestamp**: 2026-08-31T07:54:00Z
+**User Input**: "since U1 is completed, shall we proceed with U2 now?"
+**AI Response**: Started U2 dispatch-engine Functional Design. Wrote aidlc-docs/construction/plans/dispatch-engine-functional-design-plan.md with 7 questions. Did not generate design artifacts or engine code. Waiting for [Answer]: tags.
+**Context**: CONSTRUCTION - U2 Functional Design Part 1 (plan + questions)
+
+---
+
+## U2 Functional Design — answers received; artifacts generated
+**Timestamp**: 2026-08-31T08:10:00Z
+**User Input**: "i have picked teh answers for teh questions, shall we proceed, while doing so run teh frontend on 5173"
+**AI Response**: Recorded Q1–Q7 all A. Generated domain-entities.md, business-rules.md, business-logic-model.md. Skipped frontend-components.md. Started Vite at http://localhost:5173/. Waiting for Functional Design approval. Did not generate engine code.
+**Context**: CONSTRUCTION - U2 Functional Design approval gate
+
+---
+
+## U2 Code Generation — FD approved; generate now
+**Timestamp**: 2026-08-31T08:11:00Z
+**User Input**: "proceed to code generation now"
+**AI Response**: Treated as Functional Design approval and instruction to generate U2 code immediately. NFR/Infra skipped. Wrote dispatch-engine-code-generation-plan.md and executing it.
+**Context**: CONSTRUCTION - U2 Code Generation Parts 1 and 2
+
+---
+
+## U2 Code Generation — generation complete; review required
+**Timestamp**: 2026-08-31T08:22:00Z
+**User Input**: "proceed to code generation now"
+**AI Response**: Implemented src/engine (types, config, stopQueue, costScorer, stateMachine, dispatchEngine, barrel). Example tests plus fast-check properties. npm test 27 passed. Summaries written. US-D1–D6 marked complete. Presenting Code Generation Complete gate; not starting U3.
+**Context**: CONSTRUCTION - U2 Code Generation Part 2 complete; awaiting Continue to Next Stage (U3 simulation-runtime) or Request Changes
+
+---
+
+## U2 Code Generation — approved; start U3 Functional Design
+**Timestamp**: 2026-08-31T08:23:00Z
+**User Input**: "Continue to Next Stage"
+**AI Response**: Recorded U2 Code Generation as approved. Started U3 simulation-runtime Functional Design. Wrote aidlc-docs/construction/plans/simulation-runtime-functional-design-plan.md with 7 questions. Did not generate design artifacts or simulation code. Waiting for [Answer]: tags.
+**Context**: CONSTRUCTION - U3 Functional Design Part 1 (plan + questions)
+
+---
+
+## U3 Functional Design — answers received; artifacts generated
+**Timestamp**: 2026-08-31T08:30:00Z
+**User Input**: "I answered, proceed now"
+**AI Response**: Recorded Q1–Q7 all A. No ambiguities. Wrote domain-entities.md, business-rules.md, business-logic-model.md. Skipped frontend-components.md. Did not generate simulation code. Waiting for Functional Design approval.
+**Context**: CONSTRUCTION - U3 Functional Design approval gate. Answers: Q1 A (reset idle floor 1), Q2 A (Normal 8s / Busy 3s catch-up), Q3 A (uniform dest / add-request), Q4 A (step only), Q5 A (alight then board on enter doors-open), Q6 A (metrics as specified), Q7 A (UI-ready snapshot, sim elapsed timestamps)
+
+---
+
+## U3 Code Generation — FD approved; generate now
+**Timestamp**: 2026-08-31T08:34:00Z
+**User Input**: "great, proceed to code generation"
+**AI Response**: Treated as Functional Design approval and instruction to generate U3 code immediately. NFR/Infra skipped. Wrote simulation-runtime-code-generation-plan.md and executed it. src/simulation implemented. npm test 49 passed. Presenting Code Generation Complete gate; not starting U4.
+**Context**: CONSTRUCTION - U3 Code Generation Parts 1 and 2 complete; awaiting Continue to Next Stage (U4 live-dashboard) or Request Changes
+
+---
+
+## U4 start — U3 approved; skip FD; generate live dashboard
+**Timestamp**: 2026-08-31T08:43:00Z
+**User Input**: "lets proceed to U4"
+**AI Response**: Recorded U3 Code Generation as approved. Skipped U4 Functional Design (wiring only) and NFR/Infra. Wrote live-dashboard-code-generation-plan.md and executed it. App bound to SimulationService via rAF. npm test 54 passed. Browser: hall click F5 assigned A, trip completed, Pause shows Resume. Presenting Code Generation Complete gate; not starting Build and Test.
+**Context**: CONSTRUCTION - U4 Code Generation Parts 1 and 2 complete; awaiting Continue to Next Stage (Build and Test) or Request Changes
+
+---
+
+## U4 Code Generation — Request Changes (unfulfilled F10 down on A)
+**Timestamp**: 2026-08-31T08:53:00Z
+**User Input**: "theres a bug where 100s goes to A lift wait time, that reuqest is not fullfillled. this happens every time. a bug that should be solved"
+**AI Response**: Root cause: a down hall above the car was only inserted on the down list, so nextStop(up) was empty from floor 1 and the car went idle with the request still assigned. Added ensureApproachStops on assign and before idle (copy the farthest stranded down stop onto up, not destinations in between). Idle cars with leftover stops start toward them. Tests cover F10 down from floor 1. Re-presenting U4 Code Generation Complete gate; not starting Build and Test.
+**Context**: CONSTRUCTION - U4 Code Generation (bugfix on U2 engine/U3 sim). Awaiting Continue to Next Stage (Build and Test) or Request Changes
+
+---
+
+## U4 Code Generation — approval prompt after F10-down bugfix
+**Timestamp**: 2026-08-31T09:05:00Z
+**User Input**: *(approval prompt presented; waiting)*
+**AI Response**: F10 ↓ from idle floor 1 is fulfilled. npm test 61 passed. Browser: A boarded at F10, completed to dest, wait 9s. Presenting Code Generation Complete gate; not starting Build and Test.
+**Context**: CONSTRUCTION - U4 Code Generation complete after Request Changes; awaiting Continue to Next Stage (Build and Test) or Request Changes
+
+---
+
+## Git — commit and push requested
+**Timestamp**: 2026-08-31T09:19:00Z
+**User Input**: "commit and push"
+**AI Response**: Staging U2–U4 engine, simulation, live dashboard, F10-down fulfillment fix, tests, and AI-DLC docs; committing on main and pushing to origin.
+**Context**: User requested git commit and push. Did not start Build and Test.
+
+---

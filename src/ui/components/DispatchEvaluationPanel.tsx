@@ -4,10 +4,20 @@ type Props = {
   evaluation: DispatchEvaluation;
 };
 
+function cell(value: number | string): string {
+  return typeof value === "number" ? value.toFixed(1) : value;
+}
+
 export function DispatchEvaluationPanel({ evaluation }: Props) {
+  const title =
+    evaluation.requestId === "—"
+      ? "Dispatch Evaluation"
+      : `Dispatch Evaluation - Request #${evaluation.requestId}`;
+
   return (
     <section className="panel" data-testid="dispatch-evaluation-panel">
-      <div className="panel-head">Dispatch Evaluation - Request #{evaluation.requestId}</div>
+      <div className="panel-head">{title}</div>
+      <p className="eval-caption">Latest assigned request, or click a row in Active Requests</p>
       <table className="table">
         <thead>
           <tr>
@@ -21,9 +31,9 @@ export function DispatchEvaluationPanel({ evaluation }: Props) {
           {evaluation.rows.map((row) => (
             <tr key={row.factor}>
               <td>{row.factor}</td>
-              <td className={row.emphasize ? "color-A" : undefined}>{row.A}</td>
-              <td>{row.B}</td>
-              <td>{row.C}</td>
+              <td className={row.emphasize ? "color-A" : undefined}>{cell(row.A)}</td>
+              <td>{cell(row.B)}</td>
+              <td>{cell(row.C)}</td>
             </tr>
           ))}
         </tbody>

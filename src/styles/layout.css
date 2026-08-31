@@ -91,6 +91,10 @@
   background: currentColor;
 }
 
+.running-dot.is-paused {
+  color: var(--muted);
+}
+
 .app-main {
   flex: 1;
   display: grid;

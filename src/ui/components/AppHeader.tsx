@@ -1,6 +1,14 @@
-import type { SimulationSnapshot } from "../types";
+import type { SimulationSnapshot, Speed } from "../types";
 
-export function AppHeader({ snapshot }: { snapshot: SimulationSnapshot }) {
+const SPEED_OPTIONS: Speed[] = [0.5, 1, 2, 5];
+
+type Props = {
+  snapshot: SimulationSnapshot;
+  onSpeed: (speed: Speed) => void;
+};
+
+export function AppHeader({ snapshot, onSpeed }: Props) {
+  const paused = snapshot.status === "Paused";
   return (
     <header className="app-header" data-testid="app-header">
       <div className="header-brand">
@@ -15,15 +23,26 @@ export function AppHeader({ snapshot }: { snapshot: SimulationSnapshot }) {
       </div>
       <label className="header-algorithm">
         Algorithm:
-        <select data-testid="app-header-algorithm-select" defaultValue={snapshot.algorithm}>
+        <select data-testid="app-header-algorithm-select" value={snapshot.algorithm} disabled>
           <option>Cost-Based Collective Control</option>
         </select>
       </label>
       <div className="header-status">
-        <span className="running-dot" data-testid="app-header-status">
+        <span
+          className={`running-dot${paused ? " is-paused" : ""}`}
+          data-testid="app-header-status"
+        >
           {snapshot.status}
         </span>
-        <select data-testid="app-header-speed-select" defaultValue={`${snapshot.speed}x`}>
+        <select
+          data-testid="app-header-speed-select"
+          value={`${snapshot.speed}x`}
+          onChange={(event) => {
+            const raw = event.target.value.replace("x", "");
+            const speed = Number(raw) as Speed;
+            if (SPEED_OPTIONS.includes(speed)) onSpeed(speed);
+          }}
+        >
           <option>0.5x</option>
           <option>1x</option>
           <option>2x</option>
@@ -33,4 +52,3 @@ export function AppHeader({ snapshot }: { snapshot: SimulationSnapshot }) {
     </header>
   );
 }
-

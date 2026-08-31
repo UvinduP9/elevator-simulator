@@ -1,15 +1,16 @@
 import { DirectionLabel } from "./DirectionLabel";
 import { FLOOR_NUMBERS } from "../buildingLayout";
-import type { ElevatorView, HallCall } from "../types";
+import type { Direction, ElevatorView, HallCall } from "../types";
 import { HallCallColumn } from "./HallCallColumn";
 import { ElevatorCar } from "./ElevatorCar";
 
 type Props = {
   hallCalls: HallCall[];
   elevators: ElevatorView[];
+  onHallClick: (floor: number, direction: Direction) => void;
 };
 
-export function BuildingVisualizer({ hallCalls, elevators }: Props) {
+export function BuildingVisualizer({ hallCalls, elevators, onHallClick }: Props) {
   const byId = {
     A: elevators.find((e) => e.id === "A")!,
     B: elevators.find((e) => e.id === "B")!,
@@ -30,7 +31,7 @@ export function BuildingVisualizer({ hallCalls, elevators }: Props) {
         {FLOOR_NUMBERS.map((floor) => (
           <div className="floor-row" key={floor}>
             <div className="floor-num">{floor}</div>
-            <HallCallColumn floor={floor} hallCalls={hallCalls} />
+            <HallCallColumn floor={floor} hallCalls={hallCalls} onHallClick={onHallClick} />
             <div className="shaft-cell">
               <div className="shaft-track" />
             </div>

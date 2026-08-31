@@ -64,7 +64,7 @@ export function ElevatorsStatusPanel({ elevators }: Props) {
                       style={{ width: `${car.utilization}%` }}
                     />
                   </div>
-                  {car.utilization}%
+                  {car.utilization.toFixed(0)}%
                 </div>
               </td>
             </tr>

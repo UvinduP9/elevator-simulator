@@ -12,15 +12,15 @@ export function PerformancePanel({ metrics, elevators }: Props) {
       <div className="kpi-row">
         <div className="kpi">
           <span className="kpi-label">Average wait</span>
-          <span className="kpi-value">{metrics.averageWait} s</span>
+          <span className="kpi-value">{metrics.averageWait.toFixed(1)} s</span>
         </div>
         <div className="kpi">
           <span className="kpi-label">Longest wait</span>
-          <span className="kpi-value">{metrics.longestWait} s</span>
+          <span className="kpi-value">{metrics.longestWait.toFixed(1)} s</span>
         </div>
         <div className="kpi">
           <span className="kpi-label">Average journey</span>
-          <span className="kpi-value">{metrics.averageJourney} s</span>
+          <span className="kpi-value">{metrics.averageJourney.toFixed(1)} s</span>
         </div>
         <div className="kpi">
           <span className="kpi-label">Completed trips</span>
@@ -34,7 +34,7 @@ export function PerformancePanel({ metrics, elevators }: Props) {
             <div className="util-bar">
               <div className={`util-fill bg-${car.id}`} style={{ width: `${car.utilization}%` }} />
             </div>
-            <span>{car.utilization}%</span>
+            <span>{car.utilization.toFixed(0)}%</span>
           </div>
         ))}
       </div>
