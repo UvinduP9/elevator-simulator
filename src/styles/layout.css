@@ -94,7 +94,7 @@
 .app-main {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(520px, 1fr) 560px;
+  grid-template-columns: minmax(520px, 1fr) 640px;
   gap: 16px;
   padding: 16px 20px 8px;
 }
