@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 80" width="90" height="80">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF9B47"/>
+      <stop offset="100%" stop-color="#F97316"/>
+    </linearGradient>
+    <linearGradient id="panelGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF8F0"/>
+      <stop offset="100%" stop-color="#FFE7CF"/>
+    </linearGradient>
+    <filter id="shadow" x="-6%" y="-4%" width="112%" height="114%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <rect x="0" y="0" width="90" height="80" rx="11" fill="url(#bodyGrad)"/>
+    <rect x="37" y="0" width="16" height="4" rx="1.75" fill="url(#bodyGrad)"/>
+    <rect x="43" y="3" width="4" height="5" rx="1.5" fill="#ffffff" opacity="0.35"/>
+    <rect x="7" y="6" width="76" height="7" rx="3.5" fill="#ffffff" opacity="0.18"/>
+    <rect x="9" y="16" width="72" height="58" rx="6" fill="url(#panelGrad)" stroke="#ffffff" stroke-opacity="0.8" stroke-width="2"/>
+    <path d="M15 20 H81 L65 46 H15 Z" fill="#ffffff" opacity="0.16"/>
+    <rect x="12" y="74" width="66" height="2.5" rx="1.25" fill="#ffffff" opacity="0.35"/>
+  </g>
+</svg>

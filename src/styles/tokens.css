@@ -1,0 +1,65 @@
+:root {
+  --color-a: #2563eb;
+  --color-a-soft: #dbeafe;
+  --color-b: #ea580c;
+  --color-b-soft: #ffedd5;
+  --color-c: #7c3aed;
+  --color-c-soft: #ede9fe;
+  --page-bg: #eef1f6;
+  --panel-bg: #ffffff;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --pause: #2563eb;
+  --running: #16a34a;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --font: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+button,
+select,
+input {
+  font-family: inherit;
+}
+
+.color-A { color: var(--color-a); }
+.color-B { color: var(--color-b); }
+.color-C { color: var(--color-c); }
+.bg-A { background: var(--color-a); }
+.bg-B { background: var(--color-b); }
+.bg-C { background: var(--color-c); }
+
+.dir-label {
+  font-weight: 700;
+  font-variant-emoji: text;
+  font-family: "Segoe UI Symbol", "Segoe UI", system-ui, sans-serif;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.dir-up {
+  color: var(--color-a);
+}
+
+.dir-down {
+  color: var(--color-b);
+}
+
+.elevator-letter {
+  font-weight: 700;
+}
